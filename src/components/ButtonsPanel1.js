@@ -7,9 +7,10 @@ class ButtonsPanel extends Component {
     }
 
     render() {
+        let stepCountLabel = (!isNaN(this.props.selectedStepCount) ? this.props.selectedStepCount : 1);
         return (
             <div className="buttons-panel">
-                <button onClick={this.props.changeCounterValue}>Add {this.props.selectedStepCount}</button>
+                <button onClick={this.props.changeCounterValue}>{`Add ${stepCountLabel}`}</button>
                 <button onClick={ () => this.resetOrReinitCounter(false) }>ReInit</button>
                 <button onClick={ () => this.resetOrReinitCounter(true) }>Reset</button>
             </div>

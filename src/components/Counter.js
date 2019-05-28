@@ -12,7 +12,7 @@ class Counter extends Component {
         if ( !isNaN(this.props.initValue) ) {
             initValue = parseInt(this.props.initValue);
         }
- 
+
         this.state = {
             counterValue: initValue,
             step: 1,
@@ -23,14 +23,6 @@ class Counter extends Component {
     state = {
         counterValue: 0,
     } */
-
-    changeValue = () => {
-        this.setState( (prevValue) => {
-            return({
-                counterValue: prevValue.counterValue + this.state.step,
-            })
-        })
-    }
 
     resetCounter = (resetCounter) => {
         let initValue = 0;
@@ -47,8 +39,25 @@ class Counter extends Component {
     }
 
     handleChange = (e) => {
-        this.setState({
-            step: parseInt(e.target.value),
+        let stepCount = parseInt(e.target.value);
+        this.setState(() => {
+            if(!isNaN(stepCount)) {
+                return({
+                    step: stepCount,
+                })
+            } else {
+                return({
+                    step: 1,
+                })
+            }
+        })
+    }
+
+    changeValue = () => {
+        this.setState( (prevValue) => {
+            return({
+                counterValue: prevValue.counterValue + parseInt(this.state.step),
+            })
         })
     }
 
